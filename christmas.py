@@ -3,8 +3,9 @@ import random
 import hashlib
 import random as r
 import time
+import string
 
-kids = ['brandon', 'mary layson', 'cameron', 'aaron', 'dillon']
+names = []
 phrase = ' BUYS FOR '
 matching_store = {}
 frequency_store = {}
@@ -17,16 +18,16 @@ def my_shuffle(array):
     return array
 
 def match():
-    randomized = kids[:]
+    randomized = names[:]
     random.shuffle(randomized)
     buyers = ''
-    for index, name in enumerate(kids):
+    for index, name in enumerate(names):
         proposed = randomized[index]
         if (name == proposed):
             return 'conflict'
         else:
             match = name + phrase + proposed
-            if (index < (len(kids) - 1) ):
+            if (index < (len(names) - 1) ):
                 match += '\n'
             buyers += match
     return buyers
@@ -95,6 +96,7 @@ def slow_type(obj,speed):
     print ''
 
 
-iterations = input('How many iterations would you like to run? ')
+names = raw_input('List all your christmas gift participants (separated by commas) ').split(",")
+iterations = input('How many time would you like to shuffle the names up? (we will choose the most frequent matching) ')
 run_matchings(iterations)
 display_matching_results()
